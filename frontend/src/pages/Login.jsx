@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+const API = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
 import { useNavigate, Link } from "react-router-dom";
 
 function Login() {
@@ -21,7 +22,7 @@ function Login() {
       const body = new URLSearchParams();
       body.append("username", identifier);
       body.append("password", password);
-      const res = await fetch("http://localhost:8000/auth/login", {
+      const res = await fetch(`${API}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body

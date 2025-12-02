@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+const API = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigate } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
@@ -39,10 +40,10 @@ function Shell() {
     const loadMe = async () => {
       if (!hasToken) { setAvatarUrl(""); return; }
       try {
-        const res = await fetch("http://localhost:8000/me", { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } });
+        const res = await fetch(`${API}/me`, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } });
         if (!res.ok) return;
         const d = await res.json();
-        setAvatarUrl(d.avatar_url ? `http://localhost:8000${d.avatar_url}` : "");
+        setAvatarUrl(d.avatar_url ? `${API}${d.avatar_url}` : "");
       } catch {}
     };
     loadMe();
@@ -103,10 +104,10 @@ function Shell() {
       const loadMe = async () => {
         if (!hasToken) { setAvatarUrl(""); return; }
         try {
-          const res = await fetch("http://localhost:8000/me", { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } });
+          const res = await fetch(`${API}/me`, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } });
           if (!res.ok) return;
           const d = await res.json();
-          setAvatarUrl(d.avatar_url ? `http://localhost:8000${d.avatar_url}` : "");
+          setAvatarUrl(d.avatar_url ? `${API}${d.avatar_url}` : "");
         } catch {}
       };
       loadMe();
