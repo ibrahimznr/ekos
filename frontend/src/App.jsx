@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-const API = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
+const API = ((import.meta.env.VITE_API_BASE_URL || "").replace(/^http:\/\//, "https://")).replace(/\/$/, "");
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigate } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";

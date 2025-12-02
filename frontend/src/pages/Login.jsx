@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-const API = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
+const API = ((import.meta.env.VITE_API_BASE_URL || "").replace(/^http:\/\//, "https://")).replace(/\/$/, "");
 import { useNavigate, Link } from "react-router-dom";
 
 function Login() {
